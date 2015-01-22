@@ -1,0 +1,105 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>EMojis</title>
+	<link rel="stylesheet" type="text/css" href="../style.css">
+	<style type="text/css">
+		#codepoint {
+			border: 1px solid #CCC;
+			text-align: center;
+		}
+		#codepoint:focus {
+			border: 1px solid #999;
+		}
+		#emojis {
+			padding: 20px;
+			border: 1px solid #CCC;
+		}
+		#emojis > span {
+			font-size: 150%;
+			width: 46px;
+			height: 46px;
+			position: relative;
+			display: inline-block;
+			padding: 12px;
+			margin: 0px;
+			cursor: pointer;
+		}
+		#emojis > span:hover {
+			box-shadow: 0px 0px 2px rgba(0,0,0,.5);
+		}
+		#outputEmoji, #outputJS {
+			border: 1px solid #CCC;
+			padding: 20px;
+			margin-bottom: 20px;
+			font-size: 150%;
+			text-align: center;
+			height: 60px;
+		}
+
+	</style>
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine:400,700">
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<script type="text/javascript">
+
+	function findSurrogatePair(point) {
+		point = point.replace(/u\+/i, "0x");
+		if(point.search('0x') == -1)
+			point = "0x" + point;
+		var offset = point - 0x10000,
+		lead = 0xd800 + (offset >> 10),
+		trail = 0xdc00 + (offset & 0x3ff);
+		return [lead.toString(16), trail.toString(16)];
+	}
+	
+	function readWrite()
+	{
+		var text = document.getElementById('codepoint').value;
+		if(text == '')
+			return;
+		var x = findSurrogatePair(text);
+		document.getElementById('outputEmoji').innerText = eval("\"\\u" + x[0] + "\\u" + x[1] + "\"");
+		document.getElementById('outputJS').innerText = "\\u" + x[0] + "\\u" + x[1];
+	}
+	function fill(e)
+	{
+		document.getElementById('codepoint').value = e;
+		readWrite();
+	}
+
+
+	</script>
+</head>
+<body>
+	<div class="main">
+		<h1>Transform UTF-8 Codepoint to JS</h1>
+		<div class="container">
+			<div class="row clearfix">
+				<input type="text" class="col-2-3" id="codepoint" placeholder="UTF-8 Codepoint" />
+				<input type="submit" class="col-1-3" onClick="readWrite()" id="calc" value="Umrechnen" />
+			</div>
+			<div id="outputEmoji"></div>
+			<div id="outputJS"></div>
+			<div id="emojis">
+				<script type="text/javascript">
+					for(i = 0x00; i <= 0x43; ++i)
+					{
+						var x;
+						if(i < 16)
+						{
+							x = findSurrogatePair("0x1f60"+i.toString(16));
+							document.getElementById('emojis').innerHTML = document.getElementById('emojis').innerHTML + "<span onClick='fill(\"U+1f60" + i.toString(16) + "\")'>" + eval("\"\\u" + x[0] + "\\u" + x[1] + "\"") + "</span>";
+						}
+						else
+						{
+							x = findSurrogatePair("0x1f6"+i.toString(16));
+							document.getElementById('emojis').innerHTML = document.getElementById('emojis').innerHTML + "<span onClick='fill(\"U+1f6" + i.toString(16) + "\")'>" + eval("\"\\u" + x[0] + "\\u" + x[1] + "\"") + "</span>";
+						}
+					}
+
+				</script>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

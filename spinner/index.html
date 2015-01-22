@@ -1,0 +1,44 @@
+<html>
+<head>
+	<title>Spinner</title>
+	<link rel="stylesheet" type="text/css" href="../style.css">
+	<style type="text/css">
+		.button {
+			margin-right: 5px !important;
+			width: 49%;
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<h1>Canvas-Spinner</h1>
+		<div class="container">
+			<canvas id="spinner" width="64" height="64"></canvas>
+			<script type="text/javascript">
+				var canvas = document.getElementById('spinner');
+				var ctx = canvas.getContext('2d');
+				ctx.imageSmoothingEnabled = true;
+				ctx.translate(32,32);
+				var spinVal = 0;
+				function draw(current) 
+				{
+					ctx.clearRect(-32,-32,64,64);
+					ctx.rotate(2*(current+1)*Math.PI/16);
+					for(i = 0; i < 16; ++i)
+					{
+						ctx.rotate(2*Math.PI/16);
+						ctx.fillStyle = 'rgba(0,0,90,' + i/24 + ')';
+						ctx.fillRect(10, -3, 22, 4);
+					}
+					spinVal = (spinVal+1)%16;
+				}
+				var interval = setInterval(draw, 40, spinVal);
+			</script>
+			<div class="clearfix">
+				<input type="button" class="button col-1-2" value="Stop" onClick="javascript: clearInterval(interval);" />
+				<input type="button" class="button col-1-2" value="Start" onClick="javascript: clearInterval(interval); interval = setInterval(draw, 40, 0);" />
+			</div>
+		</div>
+	</div>
+</body>
+</html>
