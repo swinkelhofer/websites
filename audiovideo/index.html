@@ -1,0 +1,34 @@
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<audio id="audio" autoplay></audio>
+<script>
+function hasGetUserMedia() {
+  return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia || navigator.msGetUserMedia);
+}
+
+if (hasGetUserMedia()) {
+
+  var errorCallback = function(e) {
+    console.log('Reeeejected!', e);
+  };
+
+  // Not showing vendor prefixes.
+  navigator.getUserMedia  = navigator.getUserMedia ||
+                          navigator.webkitGetUserMedia ||
+                          navigator.mozGetUserMedia ||
+                          navigator.msGetUserMedia;
+
+var audio = document.getElementById('audio');
+
+if (navigator.getUserMedia) {
+  navigator.getUserMedia({audio: true}, function(stream) {
+    audio.src = window.URL.createObjectURL(stream);
+  }, errorCallback);
+}}
+</script>
+</body>
+</html>

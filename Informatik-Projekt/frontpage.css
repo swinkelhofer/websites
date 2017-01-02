@@ -1,0 +1,96 @@
+.body
+{
+	margin: 0px;
+
+}
+
+
+.S0 
+{
+	background-color: #A8F30A;
+	z-Index: 0;
+	position: absolute;
+	width: 512px;
+	height: 365px;
+	cursor: pointer;
+}
+
+
+.S1 
+{
+	position: absolute;
+	background-image: url(deckend.png);
+	z-Index: 1;
+	border: none;
+	width: 512px;
+	height: 365px;
+	cursor: pointer;
+}
+
+
+.S2 
+{
+	background-image:url(overlay.png);
+	position: absolute;
+	z-Index: 2;
+	border: none;
+	width: 512px;
+	height: 365px;
+}
+
+#News, #News2, #LNews
+{
+	left: 288px;
+	top: 38px;
+}
+
+
+#Friends, #Friends2, #LFriends
+{
+	left: 800px;
+	top: 38px;
+}
+
+#Chat, #Chat2, #LChat
+{
+	left: 288px;
+	top: 403px;
+}
+
+#Pinn, #Pinn2, #LPinn
+{
+	left: 800px;
+	top: 403px;
+}
+
+#Titlebar
+{
+	top: 0px;
+	left: 288px;
+	width: 1024px;
+	height: 38px;
+	position: absolute;
+	z-Index: 6;
+}
+
+#Shadow
+{
+	z-index: 3;
+	background-color:#354E03;
+	top:104px;
+	left:451px;
+	width:720px;
+	height:600px;
+	position:absolute;
+}
+
+#Common2
+{
+	z-Index: 4;
+	background-color: white;
+	position: absolute;
+	top: 95px;
+	left: 438px;
+	height: 600px;
+	width: 720px;
+}

@@ -1,0 +1,116 @@
+<html>
+<head>
+	<title></title>
+	<style>
+		input[type="radio"] {
+			-webkit-appearance: none;
+			cursor: pointer;
+			-moz-appearance: none;
+		    appearance: none;
+			outline-color: transparent;
+			outline-style: none;
+			width: 20px;
+			height: 20px;
+			border: 2px solid #AAA;
+			border-radius: 10px;
+			transition: all .2s linear 0s;
+		}
+		input[type="radio"]:checked {
+			border: 2px solid #002b36;
+			transition: all .2s linear 0s;
+		}
+		input[type="radio"]::before {
+			background-color: transparent;
+			content: '';
+			width: 10px;
+			height: 10px;
+			border-radius: 5px;
+			margin-top:3px;
+			margin-left:3px;
+			display: block;
+			transition: all .2s linear 0s;
+		}
+		input[type="radio"]:checked::before {
+			background-color: #002b36;0
+		}
+
+
+
+		input[type="checkbox"].square:checked::before {
+			margin-left: 26px;
+			transition: all .2s linear 0s;
+		}
+		input[type="checkbox"].square:checked {
+			background-color: #002b36;
+		}
+		input[type="checkbox"].square::before {
+			content: '';
+			width: 10px;
+			height: 18px;
+			background-color: #FFF;
+			margin-top:0px;
+			margin-left:0px;
+			border-radius: 0px;
+			display: block;
+			margin-left: 0px;
+			transition: all .2s linear 0s;
+		}
+		input[type="checkbox"].square {
+			-webkit-appearance: none;
+		    -moz-appearance: none;
+		    -o-appearance:none;
+		    appearance: none;
+			outline-color: transparent;
+			outline-style: none;
+			border-radius: 0px;
+			cursor: pointer;
+			background-color: #AAA;
+			height: 22px;
+			width: 40px;
+			border: 2px solid #999;
+			transition: all .2s linear 0s;
+		}
+
+
+
+		input[type="checkbox"]:checked::before {
+			margin-left: 21px;
+			transition: all .2s linear 0s;
+		}
+		input[type="checkbox"]:checked {
+			background-color: #002b36;
+		}
+		input[type="checkbox"]::before {
+			content: '';
+			margin-top:1px;
+			margin-left:1px;
+			width: 18px;
+			height: 18px;
+			border-radius: 9px;
+			background-color: #FFF;
+			display: block;
+			transition: all .2s linear 0s;
+		}
+		input[type="checkbox"] {
+			-webkit-appearance: none;
+		    -moz-appearance: none;
+		    -o-appearance:none;
+		    appearance: none;
+			outline-color: transparent;
+			outline-style: none;
+			cursor: pointer;
+			background-color: #AAA;
+			height: 20px;
+			border-radius:10px;
+			width: 40px;
+			transition: all .2s linear 0s;
+		}
+	</style>
+</head>
+<body>
+<input type="radio" name="radio" />
+<input type="radio" name="radio" />
+<input type="checkbox" />
+<input type="checkbox" class="square" />
+</body>
+</html>

@@ -1,0 +1,43 @@
+@font-face
+{ 
+	font-family: BernhardFashion BT;
+	src:url(bernhard.ttf);
+	format(TrueType);
+}
+
+#div1
+{
+	background-color: transparent;
+	font-family: BernhardFashion BT;
+	overflow:hidden;
+	font-weight:bold;
+	
+}
+
+iframe
+{
+	background-color: transparent;
+}
+
+body
+{
+	background-color: transparent;
+	font-family: BernhardFashion BT;
+	font-weight: bold;
+	font-size: 16pt;
+}
+
+table
+{
+	font-family: BernhardFashion BT;
+	font-weight: bold;
+	font-size: 16pt;
+}
+
+input
+{
+	font-family: BernhardFashion BT;
+	font-weight: bold;
+	font-size: 16pt;
+	border: 2px solid black
+}
