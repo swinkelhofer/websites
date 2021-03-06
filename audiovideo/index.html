@@ -3,7 +3,7 @@
   <title></title>
 </head>
 <body>
-<audio id="audio" autoplay></audio>
+<audio id="audio" autoplay controles></audio>
 <script>
 function hasGetUserMedia() {
   return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
@@ -26,7 +26,8 @@ var audio = document.getElementById('audio');
 
 if (navigator.getUserMedia) {
   navigator.getUserMedia({audio: true}, function(stream) {
-    audio.src = window.URL.createObjectURL(stream);
+    // audio.src = URL.createObjectURL(stream);
+    audio.srcObject = stream;      
   }, errorCallback);
 }}
 </script>

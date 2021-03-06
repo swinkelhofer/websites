@@ -1,0 +1,285 @@
+<html>
+<head>
+	<title>Canvas</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<style type="text/css">
+		input[type="text"] {
+			vertical-align: middle;
+			min-width: 0px !important;
+		}
+		.marginneed {
+			margin-left: 5px;
+		}
+		label {
+			width: auto;
+		}
+		canvas {
+			border: 1px solid #CCC;
+			background-color: white;
+			border-radius: 8px;
+		}
+	</style>
+	<script type="text/javascript">
+		/*var maxCount = 100;
+		var topleft = null;
+		var bottomright = null;
+		var mandelorjulia = null;
+		var mousePos = null;
+		var secondTouchPos = null;
+		function addi(z1, z2)
+		{
+			return [z1[0]+z2[0], z1[1]+z2[1]];
+		}
+		function square(z1)
+		{
+			return [z1[0] * z1[0] - z1[1] * z1[1], 2 * z1[0] * z1[1]];
+		}
+		function squareadd(z1, z2)
+		{
+			//return [z1[0] * z1[0] - z1[1] * z1[1] + z2[0], 2 * z1[0] * z1[1] + z2[1]];
+			return [(z1[0]+z1[1])*(z1[0]-z1[1])+z2[0], 2*z1[0]*z1[1]+z2[1]];
+		}
+		function preventDefault(e) {
+  			e = e || window.event;
+  			if (e.preventDefault)
+    			e.preventDefault();
+  			e.returnValue = false;  
+		}
+		function zoom(e)
+		{
+			preventDefault(e);
+			var e = window.event || e;
+			var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+			if(topleft == null || bottomright == null || mandelorjulia == null)
+				return false;
+			if(mandelorjulia == 0 && delta == 1)
+			{
+				runMandelbrot([topleft[0] + (bottomright[0] - topleft[0]) / 4, topleft[1] - (topleft[1] - bottomright[1]) / 4], [bottomright[0] - (bottomright[0] - topleft[0]) / 4, bottomright[1] + (topleft[1] - bottomright[1]) / 4]);
+			}
+			else if(mandelorjulia == 0 && delta == -1)
+			{
+				runMandelbrot([topleft[0] - (bottomright[0] - topleft[0]) / 2, topleft[1] + (topleft[1] - bottomright[1]) / 2], [bottomright[0] + (bottomright[0] - topleft[0]) / 2, bottomright[1] - (topleft[1] - bottomright[1]) / 2]);
+			}
+			else if(mandelorjulia == 1 && delta == 1)
+			{
+				runJulia([topleft[0] + (bottomright[0] - topleft[0]) / 4, topleft[1] - (topleft[1] - bottomright[1]) / 4], [bottomright[0] - (bottomright[0] - topleft[0]) / 4, bottomright[1] + (topleft[1] - bottomright[1]) / 4]);
+			}
+			else if(mandelorjulia == 1 && delta == -1)
+			{
+				runJulia([topleft[0] - (bottomright[0] - topleft[0]) / 2, topleft[1] + (topleft[1] - bottomright[1]) / 2], [bottomright[0] + (bottomright[0] - topleft[0]) / 2, bottomright[1] - (topleft[1] - bottomright[1]) / 2]);
+			}
+			return false;
+		}
+		function dragStart(e)
+		{
+			var e = window.event || e;
+			if(e.type == "mousedown")
+				mousePos = [e.clientX, e.clientY];
+			else if(e.type == "touchstart")
+				mousePos = [e.touches[0].clientX, e.touches[0].clientY];
+			var mycanvas = document.getElementById('myCanvas');
+			//mycanvas.removeEventListener("mousedown", dragStart);
+			//mycanvas.removeEventListener("touchstart", dragStart);
+			mycanvas.style.cursor = "move";
+		}
+		function dragEnd(e)
+		{
+			var e = window.event || e;
+			if(mousePos != null)
+			{
+				var newMousePos = null;
+				if(e.type == "mouseout" ||  e.type == "mouseup")
+					newMousePos = [e.clientX, e.clientY];
+				else if(e.type == "touchend")
+					newMousePos = [e.changedTouches[0].clientX, e.changedTouches[0].clientY];
+				var mycanvas = document.getElementById('myCanvas');
+				var ctx = mycanvas.getContext("2d");
+				var img = ctx.getImageData(0,0,mycanvas.width, mycanvas.height);
+				ctx.putImageData(img, newMousePos[0]-mousePos[0], newMousePos[1]-mousePos[1]);
+				var xoffset = (bottomright[0] - topleft[0]) * (newMousePos[0] - mousePos[0])/mycanvas.width;
+				var yoffset = (topleft[1]-bottomright[1]) * (newMousePos[1] - mousePos[1])/mycanvas.height;
+				mycanvas.style.cursor = "default";
+				if(mandelorjulia == 0)
+				{
+					setTimeout(runMandelbrot, 10, [topleft[0]-xoffset, topleft[1]-yoffset], [bottomright[0] - xoffset, bottomright[1]-yoffset]);
+				}
+				else if(mandelorjulia == 1)
+				{
+					setTimeout(runJulia,10,[topleft[0]-xoffset, topleft[1]-yoffset], [bottomright[0] - xoffset, bottomright[1]-yoffset]);
+				}
+				mousePos = null;
+				secondTouchPos = null;
+			}
+
+		}
+		function runMandelbrot(tl, br) 
+		{
+	        mandelorjulia = 0;
+	        topleft = tl;
+	        bottomright = br;
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+			var d = ctx.createImageData(1,1);
+			d.data[0]=0;
+			d.data[1]=0;
+			d.data[2]=0;
+			d.data[3]=255;
+			var br0 = br[0];
+			var br1 = br[1];
+			var tl0 = tl[0];
+			var tl1 = tl[1];
+			var count = 0;
+			var x_mult = c.width /Math.abs(br[0]-tl[0]);
+			var y_mult = c.height/Math.abs(tl[1]-br[1]);
+			var divx = 1/x_mult;
+			var divy = 1/y_mult;
+			var temp;
+			var dtmp = ctx.createImageData(1,1);
+			dtmp.data[0] = 0;
+			dtmp.data[1] = 0;
+			dtmp.data[2] = 0;
+			dtmp.data[3] = 255;
+			for(var x = tl0; x < br0; x += divx)
+			{
+				window.setTimeout(function(x, br0, br1, tl0, tl1, dtmp, ctx, divy)
+				{
+					for(; tl1 > br1; tl1 -= divy)
+					{
+						temp = squareadd([0.0,0.0], [x,tl1]);
+						count = 0;
+						while(temp[0] * temp[0] + temp[1] * temp[1] < 4 && count++ < maxCount)
+							temp = squareadd(temp, [x,tl1]);
+						if(count < maxCount)
+						{
+							dtmp.data[2] = Math.log(count) * 50;
+							ctx.putImageData(dtmp, (x+Math.abs(tl0))*x_mult,(tl1+Math.abs(br1))*y_mult);
+						}
+						else
+							ctx.putImageData(d, (x+Math.abs(tl0))*x_mult,(tl1+Math.abs(br1))*y_mult);
+					}
+				}, 1, x, br0, br1, tl0,tl1, dtmp, ctx, divy);
+			}
+		}
+		function runJulia(tl, br)
+		{
+			mandelorjulia = 1;
+			topleft = tl;
+			bottomright = br;
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+			var d = ctx.createImageData(1,1);
+			d.data[0]=0;
+			d.data[1]=0;
+			d.data[2]=0;
+			d.data[3]=255;
+			var count = 0;
+			var x_mult = c.width /(br[0]-tl[0]);
+			var y_mult = c.height/(tl[1]-br[1]);
+			var xy;
+			var temp = [Number(document.getElementById("real").value),Number(document.getElementById("imag").value)];
+			var dtmp = ctx.createImageData(1,1);
+			var br0 = br[0];
+			var br1 = br[1];
+			var tl0 = tl[0];
+			var tl1 = tl[1];
+			dtmp.data[0] = 0;
+			dtmp.data[1] = 0;
+			dtmp.data[2] = 0;
+			dtmp.data[3] = 255;
+			for(var x = tl[0]; x < br[0]; x = x+1/x_mult)
+			{
+				window.setTimeout(function(x, br, tl, dtmp, ctx) {
+					for(var y = tl[1]; y > br[1]; y = y - 1/y_mult)
+					{
+						xy = [x,y];
+						count = 0;
+						while(xy[0] * xy[0] + xy[1] * xy[1] < 4 && count < maxCount)
+						{
+							++count;
+							xy = squareadd(xy, temp);
+						}
+						if(count < maxCount)
+						{
+							dtmp.data[2] = Math.log(count) * 50;
+							ctx.putImageData(dtmp, (x+Math.abs(tl0))*x_mult,(y+Math.abs(br1))*y_mult);
+						}
+						else
+							ctx.putImageData(d, (x+Math.abs(tl0))*x_mult,(y+Math.abs(br1))*y_mult);
+					}
+				}, 1, x, br, tl, dtmp, ctx);
+			}
+		}*/
+	</script>
+</head>
+<body>
+
+	<script src="wasm_exec.js"></script>
+
+	<script>
+		if (!WebAssembly.instantiateStreaming) {
+		// polyfill
+		WebAssembly.instantiateStreaming = async (resp, importObject) => {
+			const source = await (await resp).arrayBuffer();
+			return await WebAssembly.instantiate(source, importObject);
+		};
+		}
+
+		const go = new Go();
+		let mod, inst;
+		WebAssembly.instantiateStreaming(fetch("fractals.wasm"), go.importObject).then(
+		async result => {
+			mod = result.module;
+			inst = result.instance;
+			await go.run(inst);
+		}
+		);
+		function julia() {
+			var bytes = atob(runJulia());
+			var buffer = new Uint8ClampedArray(bytes.length);
+			var canvas = document.getElementById("myCanvas")
+			var ctx = canvas.getContext("2d");
+			for (var i = 0; i < bytes.length; i+=1) {
+				buffer[i] = bytes.charCodeAt(i);
+			}
+			var imageData = new ImageData(buffer, canvas.clientWidth, canvas.clientHeight);
+			console.log(imageData);
+			ctx.putImageData(imageData, 0, 0);
+
+		}
+	</script>
+	<div class="main">
+		<h1>Fractals</h1>
+		<div class="container">
+			<canvas id="myCanvas" width="600" height="400"></canvas>
+		</div>
+		<div class="container">
+			<button class="col-1-2 clearfix" onclick="runMandelbrot([-2, 1], [1, -1])">Mandelbrotmenge zeichnen</button>
+		</div>
+		<div class="container">
+			<label>Mit dem Parameter: z=</label><input type="text" class="col-1-8" id="real" size="2" value="-0.63" /><label class="marginneed">+</label><input type="text" id="imag" class="col-1-8" size="2" value="0.4" /><label class="marginneed">i</label>
+			<button class="col-1-2 clearfix" onclick="julia()">JuliaMenge zeichnen</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var mycanvas = document.getElementById("myCanvas");
+		if (mycanvas.addEventListener)
+		{
+			// IE9, Chrome, Safari, Opera
+			mycanvas.addEventListener("wheel", zoom, false);
+			mycanvas.addEventListener("touchstart", dragStart, false);
+			mycanvas.addEventListener("touchend", dragEnd, false);
+			mycanvas.addEventListener("mousedown", dragStart, false);
+			mycanvas.addEventListener("mouseup", dragEnd, false);
+			mycanvas.addEventListener("mouseout", dragEnd, false);
+			// Firefox
+			mycanvas.addEventListener("DOMMouseScroll", zoom, false);
+		}
+		// IE 6/7/8
+		else
+		{
+			mycanvas.attachEvent("onmousewheel", zoom);
+		}
+	</script>
+</body>
+</html>
