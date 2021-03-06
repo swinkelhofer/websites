@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <style>
+    .page {
+        background-color: #FFF;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        /*box-shadow: -4em -1.5em 1em 3em rgba(10,10,10,.1), 0 0 0 -1px rgba(10,10,10,.02);*/
+        transition: left .3s ease-in-out 0s;
+        box-shadow: -5px 10px 4px rgba(20,20,20,.3);
+    }
+    /* .page::after {
+        content: "";
+        box-shadow: -10px 10px 7px rgba(20,20,20,.3);
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        height: 2rem;
+    }
+ */
+    .is-fullheight-with-navbar .page {
+        margin-top: 3.25rem;
+        height: calc(100% - 3.25rem);
+    }
+
+    .hero {
+        overflow: hidden;
+    }
+
+    aside.menu {
+        height: 100%;
+        padding: 2rem;
+        margin-top: 3.25rem;
+    }
+    .has-position-fixed {
+        position: fixed !important;
+    }
+
+    .expandableIcons {
+        height: 8rem;
+        display: flex;
+        padding-bottom: 5px;
+        align-content: flex-end;
+        align-items: flex-end;
+        overflow: hidden;
+    }
+    .expandableIcons .expandableIcon {
+        display: none;
+        position: absolute;
+        left: 0rem;
+        top: 5rem;
+        width: 4rem;
+        height: 4rem;
+        background-color: white;
+        border-radius: 2rem;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 3px 3px 2px rgba(20,20,20,.3);
+
+    }
+    .expandableIcons .mainIcon {
+        width: 4rem;
+        height: 4rem;
+        background-color: white;
+        border-radius: 2rem;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 3px 3px 2px rgba(20,20,20,.3);
+    }
+    .expandableIcons .mainIcon:hover .expandableIcon {
+        display: flex;
+    }
+    
+    </style>
+  </head>
+  <body>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+      <aside class="menu has-position-fixed column is-one-quarter is-offset-three-quarters has-background-dark">
+            <p class="menu-label">
+              General
+            </p>
+            <ul class="menu-list">
+              <li><a class="has-text-white">Dashboard</a></li>
+              <li><a class="has-text-white">Customers</a></li>
+            </ul>
+            <p class="menu-label">
+              Administration
+            </p>
+            <ul class="menu-list">
+              <li><a class="has-text-white">Team Settings</a></li>
+              <li>
+                <a class="has-text-white">Manage Your Team</a>
+                <ul>
+                  <li><a class="has-text-white">Members</a></li>
+                  <li><a class="has-text-white">Plugins</a></li>
+                  <li><a class="has-text-white">Add a member</a></li>
+                </ul>
+              </li>
+             </ul>
+          </aside>
+
+        <nav class="navbar is-dark is-fixed-top">
+                <div class="columns column is-full">
+                  <div id="navMenu" class="navbar-menu">
+                    <div class="navbar-start">
+                      <a class="navbar-item">
+                        Home
+                      </a>
+                      <a class="navbar-item">
+                        Documentation
+                      </a>
+                    </div>
+              
+                    <div class="navbar-end">
+                        <span class="navbar-burger burger is-block" data-target="navbarMenuHeroB">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+
+    <section class="section hero is-fullheight-with-navbar">
+        <div id="page1" class="page has-background-primary">
+            <h1 class="title is-1 has-text-centered has-text-white">Page #1</h1>
+
+           <!--  <ul class="expandableIcons">
+                <li class="mainIcon"><i class="fas fa-share fa-2x"></i>
+                    <ul>
+                        <li class="expandableIcon">test#1</li>
+                        <li class="expandableIcon">test#1</li>
+                        <li class="expandableIcon">test#1</li>
+                    </ul>
+                </li>
+            </ul> -->
+        </div>
+        <div id="page2" class="page has-background-light">
+            <h1 class="title is-1 has-text-centered">Page #2</h1>
+        </div>
+        <div id="page3" class="page has-background-success">
+            <h1 class="title is-1 has-text-centered has-text-white">Page #3</h1>
+        </div>
+
+        <div id="page4" class="page has-background-white">
+                <h1 class="title is-1 has-text-centered">Page #4</h1>
+            </div>
+
+        <div id="page5" class="page has-background-dark">
+                <h1 class="title is-1 has-text-centered has-text-white">Page #5</h1>
+            </div>
+
+        <div id="page6" class="page has-background-warning">
+                <h1 class="title is-1 has-text-centered has-text-white">Page #6</h1>
+            </div>
+    </section>
+  
+  
+
+    <script>
+            $(document).ready(function() {
+                var pages = $('.page');
+                var zindexes = pages.length + 100;
+                var fullHeight = pages.height();
+                var fullWidth = pages.width();
+                pages.each(function(i,e) {
+                    $(e).css("z-index", (zindexes-i));
+                });
+                $('.navbar').css("z-index", (zindexes+1));
+
+                //$("aside.menu").css("z-index", (zindexes));
+                $(document.body).css("height", pages.length * fullHeight);
+                $(document).scroll(function() {
+                    var scrollTop = $(document).scrollTop();
+                    var index = Math.floor(scrollTop / fullHeight);
+                    $(pages.get(index)).css("transform", `translateY(${-2*(scrollTop % fullHeight)}px) translateX(${Math.pow(-1, index) *fullWidth / fullHeight*(scrollTop % fullHeight)}px) rotate(${Math.pow(-1, index) * (scrollTop % fullHeight) * 45/fullHeight}deg)`);
+                    $(pages.get(index+1)).css("transform", `none`);
+
+                    // $(pages.get(index)).css("margin-left", (-2*(scrollTop % fullHeight)) + "px");
+                    // $(pages.get(index+1)).css("margin-left", "0px");
+
+                });
+                
+
+                var scrollTop = $(document).scrollTop();
+                for(var i = 0; i < Math.floor(scrollTop / fullHeight); ++i)
+                    $(pages.get(i)).css("top", (-2*fullHeight) + "px");
+
+                var el = $(location.hash);
+                var elIndex = 0;
+                for(var i = 0; i < pages.length; ++i) {
+                    if($(pages.get(i)).attr('id') == el.attr('id')) {
+                        elIndex = i;
+                        break;
+                    }
+                }
+
+                $([document.documentElement, document.body]).animate({
+                    scrollTop: elIndex * fullHeight
+                }, 500);
+
+
+                $(".navbar-burger").click(function() {
+                    $(".navbar-burger").toggleClass("is-active");
+                    
+                    var menuWidth = $("aside.menu").outerWidth();
+                    if($('.navbar-burger').hasClass("is-active"))
+                        $('.page, .hero').css("left", (-menuWidth) + "px");
+                    else
+                        $('.page, .hero').css("left", "0px");
+                    $(".navbar-menu").toggleClass("is-active");
+
+                });
+            });
+        </script>
+  </body>
+</html>
