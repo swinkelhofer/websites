@@ -1,0 +1,65 @@
+<html>
+<head>
+<script type="text/javascript" src="jInputSuite.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<style type="text/css">
+	body {
+		font-family: 'Lato';
+	}
+	label {
+		margin-left: 10px;
+		vertical-align: middle;
+	}
+	input[type=submit] {
+		min-width: 130px;
+		min-height: 40px;
+		margin-top:5px;
+		background-color: #002b36;
+		color: #FFF;
+		border: 1px solid #002b36;
+		transition: all .3s linear 0s;
+	}
+	input[type=submit]:hover {
+		background-color: #FFF;
+		color: #333;
+		cursor: pointer;
+		transition: all .3s linear 0s;
+	}
+	@media screen and (max-device-width: 640px)
+	{
+		body {
+			font-size: 3.8em;
+		}
+		label {
+			margin-left: 30px;
+			line-height: 80px;
+			vertical-align: bottom;
+		}
+	}
+</style>
+</head>
+<body>
+<form method="post" action="">
+	<input type="checkbox" id="check1"  name="toggle1" class="jCheckbox" checked /><label for="check1">Checkbox1</label><br>
+	<input type="checkbox" id="check2"  name="toggle2" class="jCheckbox square" hcol='ff0000' bcol='#333' /><label for="check2">Checkbox2</label><br>
+	<input type="checkbox" id="check3"  name="toggle3" class="jCheckbox square" /><label for="check1">Checkbox3</label><br>
+	<input type="submit" value="OK" />
+	<input type="radio" value="Radio1" name="test" />
+	<input type="radio" value="Radio2" name="test" />
+
+
+	<div class="circleborder" ><div class="slider"></div><div class="circle"><input type="text" maxlength="3" value="0" /></div></div> 
+<!-- 	<pie class="ten"></pie>
+<pie class="twentyfive"></pie>
+<pie class="fifty"></pie>
+<pie class="seventyfive"></pie>
+<pie class="onehundred"></pie>//-->
+</form>
+
+<div>
+<span></span>
+</div>
+
+
+</body>
+</html>
