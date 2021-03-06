@@ -1,0 +1,124 @@
+@import url("https://use.fontawesome.com/releases/v5.0.9/css/all.css");
+a {
+	color: #33658A;
+	text-decoration: none;
+    transition: color .3s ease-in-out 0s;
+}
+a:hover {
+	color: #9DB5CA;
+}
+a:before {
+	font-weight: 900;
+	font-family: "Font Awesome 5 Free";
+    line-height: initial;
+    font-size: 1.1em;
+}
+a[href^="http://"], a[href^="https://"] {
+	/* fully valid URL, likely external link */
+	margin-right: .5em;
+	margin-left: .5em;
+}
+a[href^="http://"]:before, a[href^="https://"]:before {
+	/* fully valid URL, likely external link */
+	content: '\f0ac';
+    color: #56638A;
+	padding-right: .3em;
+}
+
+a[href^="mailto:"] {
+	/* email link */
+	margin-right: .5em;
+	margin-left: .5em;
+}
+a[href^="mailto:"]:before {
+	/* email link */
+	content: '\f0e0';
+    color: #B5D2FC;
+	padding-right: .3em;
+}
+
+a[href$=".pdf"], a[href$=".PDF"] {
+	/* PDF file */
+	margin-right: .5em;
+	margin-left: .5em;
+}
+a[href$=".pdf"]:before, a[href$=".PDF"]:before {
+	/* PDF file */
+	content: '\f1c1';
+    color: #960200;
+	padding-right: .3em;
+}
+
+a[href$=".doc"], a[href$=".docx"], a[href$=".DOC"], a[href$=".DOCX"]  {
+	/* Microsoft Word document */
+	margin-right: .5em;
+	margin-left: .5em;
+}
+a[href$=".doc"]:before, a[href$=".docx"]:before, a[href$=".DOC"]:before, a[href$=".DOCX"]:before  {
+	/* Microsoft Word document */
+	content: '\f1c2';
+    color: #36558F;
+	padding-right: .3em;
+}
+
+a[href$=".xls"], a[href$=".xlsx"], a[href$=".XLS"], a[href$=".XLSX"]  {
+	/* Microsoft Excel document */
+	margin-right: .5em;
+	margin-left: .5em;
+}
+a[href$=".xls"]:before, a[href$=".xlsx"]:before, a[href$=".XLS"]:before, a[href$=".XLSX"]:before  {
+	/* Microsoft Excel document */
+	content: '\f1c3';
+    color: #4DAA57;
+	padding-right: .3em;
+}
+
+a[href$=".ppt"], a[href$=".pptx"], a[href$=".PPT"], a[href$=".PPTX"]  {
+	/* Microsoft Powerpoint document */
+	margin-right: .5em;
+	margin-left: .5em;
+}
+a[href$=".ppt"]:before, a[href$=".pptx"]:before, a[href$=".PPT"]:before, a[href$=".PPTX"]:before  {
+	/* Microsoft Powerpoint document */
+	content: '\f1c4';
+    color: #BB342F;
+	padding-right: .3em;
+}
+
+a[href$=".mp3"], a[href$=".MP3"] {
+	/* Music file */
+	margin-right: .5em;
+	margin-left: .5em;
+}
+
+a[href$=".mp3"]:before, a[href$=".MP3"]:before {
+	/* Music file */
+	content: '\f1c7';
+    color: #D58936;
+	padding-right: .3em;
+}
+
+a[href$=".avi"], a[href$=".AVI"], a[href$=".mp4"], a[href$=".MP4"], a[href$=".mpeg"], a[href$=".MPEG"] {
+	/* video file */
+	margin-right: .5em;
+	margin-left: .5em;
+}
+
+a[href$=".avi"]:before, a[href$=".AVI"]:before, a[href$=".mp4"]:before, a[href$=".MP4"]:before, a[href$=".mpeg"]:before, a[href$=".MPEG"]:before {
+	/* video file */
+	content: '\f1c8';
+    color: #CE6C47;
+	padding-right: .3em;
+}
+
+a[href$=".zip"], a[href$=".ZIP"] {
+	/* Music file */
+	margin-right: .5em;
+	margin-left: .5em;
+}
+
+a[href$=".zip"]:before, a[href$=".ZIP"]:before {
+	/* Music file */
+	content: '\f1c6';
+    color: #4DAA57;
+	padding-right: .3em;

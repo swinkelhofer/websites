@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Share+Tech");
+
+body {
+    margin: 1em auto;
+    padding: 0 1em;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.0em;
+    font-weight: 300;
+    max-width: 60em;
+    font-kerning: normal;
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-variant-ligatures: common-ligatures;
+}
+body * {
+    box-sizing: border-box;
+}
+
+h1.fancy span:nth-child(n) {
+  display: inline-block;
+  padding: 20px 10px;
+  font-family: monospace;
+}
+h1.fancy span:nth-child(2n) {
+  transform: skewY(15deg);
+  background-color: red;
+}
+h1.fancy span:nth-child(2n-1) {
+  transform: skewY(-15deg);
+  background-color: darkred;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Open Sans script=all rev=1", sans-serif;
+    font-weight: 400;
+    margin: 0;
+    padding-bottom: 0.6em;
+    /* Golden ratio */
+    /* padding-bottom: 0.618em; */
+}
+h1 {
+    font-size: 2.8em;
+    /* Golden ratio */
+    /* font-size: 4.236em; */
+    /* padding-bottom: 1.5rem; */
+    /* padding-top: 0.8rem; */
+}
+h2 {
+    font-size: 2.42em;
+    /* Golden ratio */
+    /* font-size: 3.33em; */
+    /* padding-bottom: 1.3rem; */
+    /* padding-top: 0.6rem; */
+}
+h3 {
+    font-size: 2.1em;
+    /* Golden ratio */
+    /* font-size: 2.618em; */
+    /* padding-bottom: 1.13rem; */
+    /* padding-top: 0.52rem; */
+}
+h4 {
+    font-size: 1.82em;
+    /* Golden ratio */
+    /* font-size: 2.058em; */
+    /* padding-bottom: 0.98rem; */
+    /* padding-top: 0.45rem; */
+}
+h5 {
+    font-size: 1.58em;
+    /* Golden ratio */
+    /* font-size: 1.618em; */
+    /* padding-bottom: 0.85rem; */
+    /* padding-top: 0.39rem; */
+}
+h6 {
+    font-size: 1.37em;
+    /* Golden ratio */
+    /* font-size: 1.272em; */
+    /* padding-bottom: 0.74rem; */
+    /* padding-top: 0.34rem; */
+}
+p {
+    line-height: 1.3em;
+    /* Golden ratio */
+    /* line-height: 1.272em; */
+    text-align: justify;
+    /* padding-bottom: 1.3em; */
+}
+
+p, cite {
+    word-spacing: -0.5px;
+    margin: 0px;
+}
+
+cite {
+    display: block;
+    text-indent: 1.3em;
+    letter-spacing: .5px;
+    /* Golden ratio */
+    /* text-indent: 1.272em; */
+    text-align-last: right;
+    position: relative;
+    text-align: justify;
+    line-height: 1.3em;
+    /* Golden ratio */
+    /* line-height: 1.272em; */
+    padding-bottom: 2.6em;
+    /* Golden ratio */
+    /* padding-bottom: 1.272em; */
+    padding-top: 2.6em;
+    /* Golden ratio */
+    /* padding-top: 2.544em; */
+}
+
+cite:before {
+    content: '“';
+    position: absolute;
+    margin-left: -0.35em;
+    font-size: 12.72em;
+    line-height: 0;
+    margin-top: 0.28em;
+    display: block;
+    font-weight: 200;
+    height: 0px !important;
+    font-family: "Share Tech";
+    color: #DDD;
+    z-index: -1;
+}
+
+cite:after {
+    content: '”';
+    position: absolute;
+    right: 0px;
+    font-size: 12.72em;
+    line-height: 0;
+    margin-top: 0.25em;
+    display: block;
+    font-weight: 200;
+    height: 0px !important;
+    font-family: "Share Tech";
+    color: #DDD;
+    z-index: -1;
+}
+
+
+@media screen and (min-width: 21em) { /* 21em "gate" * 1.15 font-size */
+    p { line-height: calc(1.3em + (1.5 - 1.3) * ((100vw - 21em) / (35 - 21))); }
+    /* Golden ratio */
+    /* p { line-height: calc(1.272em + (1.612 - 1.272) * ((100vw - 21em) / (35 - 21))); } */
+}
+
+@media (min-width: 35em) { /* 35em "gate" * 1.15 font-size */
+    p { 
+        /* line-height: 1.5em; */
+        line-height: 1.618em;
+    }
+}
