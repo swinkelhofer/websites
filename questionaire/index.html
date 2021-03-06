@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+	</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+	<style>
+		body {
+		    font-family: "Roboto";
+		    background-color: #f5f4f6;
+		    color: #323132;
+		}
+		.form-control {
+		    display: flex;
+		    align-items: center;
+		}
+		.settings {
+    		background-color: #7dac2c;
+    		padding: 1rem 1.6rem;
+    		border-radius: .6rem;
+            margin-top: .6rem;
+		}
+		.settings.form-control > label:not(.switch) {
+		    vertical-align: middle;
+		    padding-right: 1rem;
+		    color:white;
+		    font-size: 1.1rem;
+		}
+		.settings .switch {
+			position: relative;
+			display: inline-block;
+			width: 60px;
+			height: 36px;
+		}
+
+		/* Hide default HTML checkbox */
+		.settings .switch input {display:none;}
+
+		/* The slider */
+		.settings .slider {
+			position: absolute;
+			cursor: pointer;
+			top: 0;
+			left: 0;
+			right: 0;
+			border: 2px solid #27340e;
+			bottom: 0;
+			background-color: #27340e;
+			-webkit-transition: .4s;
+			transition: .4s;
+			border-radius: 36px;
+		}
+
+		.settings .slider:before {
+			position: absolute;
+			height: 38px;
+			display: flex;
+			color: transparent;
+			align-items: center;
+			justify-content: center;
+			width: 38px;
+			border: .5px solid rgba(0,0,0,.4);
+			left: -2px;
+			top: -4px;
+			box-shadow: 3px 3px 6px rgba(0,0,0,.5);
+			background-color: white;
+			-webkit-transition: .4s;
+			transition: .4s;
+			font-weight: 900;
+			font-family: "Font Awesome 5 Free";
+			content: "\f00c";
+			border-radius: 50%;
+		}
+
+		.settings input:checked + .slider {
+			background-color: #415816;
+			border: 2px solid #6c9426;
+		}
+
+
+		.settings input:focus + .slider {
+			box-shadow: 0 0 1px #2196F3;
+		}
+
+		.settings input:checked + .slider:before {
+			-webkit-transform: translateX(22px);
+			-ms-transform: translateX(22px);
+			transform: translateX(22px);
+			border-color: rgba(0,0,0,.5);
+			color: #7baf20;
+		}
+		.collapse {
+			width: 100%;
+			box-sizing: border-box;
+			background-color: #FFFFFF;
+			margin-top: .6rem;
+		}
+		.collapse:last-child {
+			margin-bottom: .6rem;
+		}
+		.collapse .item {
+			width: 100%;
+			padding: 1rem 0rem;
+			position: relative;
+			border-bottom: 2px solid #eeedef;
+		}
+		.collapse .item:last-child {
+			border-bottom: none;
+		}
+		.collapse .item input {
+			display: none;
+		}
+		.collapse .item .switch {
+			position: relative;
+		}
+		.collapse .item .slider {
+			width: 36px;
+			height: 36px;
+			top: -5px;
+			border-radius: 36px;
+			border: 2px solid #e0dfe1;
+			cursor: pointer;
+			position: absolute;
+			-webkit-transition: .4s;
+			transition: .4s;
+			font-weight: 900;
+			font-family: "Font Awesome 5 Free";
+			content: "";
+			-moz-osx-font-smoothing: grayscale;
+		    -webkit-font-smoothing: antialiased;
+		    display: inline-block;
+		    font-style: normal;
+		    font-variant: normal;
+		    text-rendering: auto;
+		    line-height: 1;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		}
+		.collapse .item input:checked + .slider {
+			background-color: #4689f0;
+			border: 2px solid #4689f0;
+		}
+
+		.collapse .item input + .slider:before {
+			content: "";
+			color: white;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.collapse .item input:checked + .slider:before {
+			content: "\f00c";
+		}
+		.collapse .item  > label:not(.switch) {
+		    font-size: 1.1rem;
+		    vertical-align: middle;
+		    vertical-align: -webkit-baseline-middle;
+		    padding-left: calc(36px + 1rem);
+		}
+		.collapse .head{
+			font-size: 1.1rem;
+			border-bottom: 2px solid #eeedef;
+			padding: 1rem 1.6rem;
+			cursor: pointer;
+			-webkit-transition: .4s;
+			transition: .4s;
+			position: relative;
+		}
+		.collapse .head:hover {
+			background-color: #f5f4f6;
+		}
+		.collapse .head:before {
+		    height: 1.6rem;
+		    width: 1.6rem;
+		    right: 1.6rem;
+		    position: absolute;
+		    font-family: "Font Awesome 5 Free";
+		    content: "\f105";
+		    font-weight: 900;
+		    display: flex;
+		    align-items: center;
+		    font-size: 1.6rem;
+		    color: #989798;
+		    justify-content: center;
+		}
+		.collapse.active .head:before {
+			content: "\f107";
+		}
+		.collapse .body {
+			padding: 0rem 1.6rem;
+			max-height: 0;
+			overflow: hidden;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		.collapse.active .body {
+			display: block;
+			max-height: 300px;
+		}
+		h1 {
+		    padding-top: 1.6rem;
+		    padding-bottom: 1.6rem;
+		    margin: 0;
+		    font-size: 2.816rem;
+		    font-weight: 400;
+		}
+	</style>
+
+
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.collapse .head').each(function(i,e) {
+			$(e).click(function() {
+				if($(this).parent().hasClass("active"))
+					$(this).parent().removeClass("active");
+				else
+					$(this).parent().addClass("active");
+				})
+				
+		});
+	});
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<body>
+	<h1>Questionaire</h1>
+	<div class="settings form-control">
+		<label for="switch">Test#1</label>
+		<label class="switch">
+			<input id="switch" type="checkbox">
+			<span class="slider"></span>
+		</label>
+	</div>
+	<div class="settings form-control">
+		<label for="switch">Test#2</label>
+		<label class="switch">
+			<input id="switch" type="checkbox">
+			<span class="slider"></span>
+		</label>
+	</div>
+	<div class="collapse">
+		<div class="head">
+			Test
+		</div>
+		<div class="body">
+		<div class="item">
+			<label class="switch">
+				<input id="test" type="checkbox">
+				<span class="slider"></span>
+			</label>
+			<label for="test">Test</label>
+		</div>
+		<div class="item">
+			<label class="switch">
+				<input id="test2" type="checkbox">
+				<span class="slider"></span>
+			</label>
+			<label for="test2">Test</label>
+		</div>
+		</div>
+	</div>
+	<div class="collapse">
+		<div class="head">
+			Test
+		</div>
+		<div class="body">
+		<div class="item">
+			<label class="switch">
+				<input id="test" type="checkbox">
+				<span class="slider"></span>
+			</label>
+			<label for="test">Test</label>
+		</div>
+		<div class="item">
+			<label class="switch">
+				<input id="test2" type="checkbox">
+				<span class="slider"></span>
+			</label>
+			<label for="test2">Test</label>
+		</div>
+		<div class="item">
+			<label class="switch">
+				<input id="test3" type="checkbox">
+				<span class="slider"></span>
+			</label>
+			<label for="test3">Test</label>
+		</div>
+		<div class="item">
+			<label class="switch">
+				<input id="test4" type="checkbox">
+				<span class="slider"></span>
+			</label>
+			<label for="test4">Test</label>
+		</div>
+		</div>
+	</div>
+	<div class="collapse">
+		<div class="head">
+			Test
+		</div>
+		<div class="body">
+		<div class="item">
+			<label class="switch">
+				<input id="test" type="checkbox">
+				<span class="slider"></span>
+			</label>
+			<label for="test">Test</label>
+		</div>
+		<div class="item">
+			<label class="switch">
+				<input id="test2" type="checkbox">
+				<span class="slider"></span>
+			</label>
+			<label for="test2">Test</label>
+		</div>
+		</div>
+	</div>
+</body>
+</html>
