@@ -10,7 +10,7 @@ body {
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1px solid #CCC;
+	border: 1px dotted #CCC;
 	margin-top: 40px;
 	padding: 20px;
 }
@@ -45,7 +45,7 @@ p {
 }
 
 .container {
-	border: 1px solid #CCC;
+	border: 1px dotted #CCC;
 	padding: 20px;
 	position: relative;
 	width: 100%;
@@ -100,7 +100,6 @@ h1
 	font-size: 450%;
 	text-align: center;
 	font-weight: 700;
-	border: 1px solid #CCC;
 	padding: 20px;
 	font-family: Tangerine;
 	font-style: italic;
